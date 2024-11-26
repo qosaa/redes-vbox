@@ -1,0 +1,104 @@
+Relatório: Metodologias para Instalação em Massa de Sistemas Operativos
+1. Introdução
+
+A necessidade de configurar 100 computadores de forma uniforme requer a utilização de metodologias de instalação em massa. Este relatório descreve diferentes métodos disponíveis, destacando vantagens, desvantagens e possíveis cenários de aplicação.
+2. Metodologias Disponíveis
+2.1. Uso do Sysprep (System Preparation Tool)
+
+O Sysprep é uma ferramenta oficial da Microsoft para preparar uma imagem do Windows que pode ser replicada em outros computadores.
+
+Processo:
+
+    Configura-se um computador modelo.
+    O Sysprep remove informações específicas (como nome do computador e SID).
+    A imagem é capturada e implantada em outros PCs.
+
+Vantagens:
+
+    Ferramenta oficial e gratuita da Microsoft.
+    Compatível com diferentes configurações de hardware (usando drivers genéricos).
+    Permite personalização detalhada antes da replicação.
+
+Desvantagens:
+
+    Requer um bom entendimento técnico.
+    Pode ser demorado em grupos de hardware muito diversos.
+
+2.2. Clonezilla
+
+O Clonezilla é uma ferramenta de código aberto para clonagem de discos e partições.
+
+Processo:
+
+    Configura-se um computador modelo.
+    Cria-se uma imagem do disco ou partição usando Clonezilla.
+    A imagem é clonada em outros PCs.
+
+Vantagens:
+
+    Rápido para grupos de hardware idêntico.
+    Open-source e gratuito.
+    Suporta várias opções de compressão de imagens.
+
+Desvantagens:
+
+    Pouco flexível para hardwares diferentes.
+    Interface menos amigável para iniciantes.
+
+2.3. Windows Deployment Services (WDS)
+
+O WDS é uma solução baseada em servidor para instalar sistemas operativos remotamente.
+
+Processo:
+
+    Configura-se um servidor WDS com as imagens desejadas.
+    Os computadores cliente fazem boot via rede (PXE) e recebem a instalação.
+
+Vantagens:
+
+    Automatiza o processo em redes grandes.
+    Ideal para diferentes configurações de hardware (drivers podem ser adicionados).
+    Permite configurar instalações sem interação direta no PC.
+
+Desvantagens:
+
+    Requer infraestrutura de rede sólida.
+    Necessita de um servidor dedicado.
+
+2.4. Ferramentas Comerciais (Acronis Snap Deploy, MDT, SCCM)
+
+Existem ferramentas comerciais como Acronis Snap Deploy, Microsoft Deployment Toolkit (MDT) e System Center Configuration Manager (SCCM).
+
+Processo:
+
+    Configura-se uma imagem personalizada.
+    Implantação é gerida por estas ferramentas, com suporte adicional para configurações.
+
+Vantagens:
+
+    Interfaces amigáveis e funcionalidades avançadas.
+    Suporte técnico incluído.
+    Boa integração com grandes redes e sistemas corporativos.
+
+Desvantagens:
+
+    Custos elevados.
+    Excesso de funcionalidades para projetos pequenos.
+
+3. Comparação Geral
+Metodologia	Custo	Facilidade	Flexibilidade para Hardware	Escalabilidade
+Sysprep	Gratuito	Médio	Alta	Médio
+Clonezilla	Gratuito	Fácil	Baixa	Médio
+WDS	Gratuito	Médio	Alta	Alta
+Ferramentas Comerciais	Elevado	Fácil	Alta	Alta
+4. Escolha da Metodologia
+
+Para este projeto, considerando o cenário de hardware misto (50 iguais e 50 diferentes):
+
+    Grupo 1 (hardware idêntico): Clonezilla seria uma escolha eficiente.
+    Grupo 2 (hardware diverso): Sysprep ou WDS são mais adequados, devido à necessidade de ajustes específicos.
+
+A escolha final dependerá da infraestrutura disponível (rede e servidores) e do nível técnico da equipa envolvida.
+5. Conclusão
+
+Cada metodologia tem aplicações específicas. Projetos pequenos ou com hardware idêntico beneficiam de ferramentas como Clonezilla, enquanto redes maiores e diversificadas exigem soluções mais robustas, como WDS ou Sysprep.
